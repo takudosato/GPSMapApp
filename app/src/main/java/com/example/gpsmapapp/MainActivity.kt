@@ -16,6 +16,10 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import java.net.URLEncoder
 
+/**
+ * メインのAcrivityクラス
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     //緯度フィールド
@@ -24,7 +28,13 @@ class MainActivity : AppCompatActivity() {
     private var _longitude = 0.0
 
 
-
+    /**
+     * 起動時の処理
+     *パーミッションを確認する
+     *
+     * @param savedInstanceState　
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         
         super.onCreate(savedInstanceState)
@@ -47,6 +57,13 @@ class MainActivity : AppCompatActivity() {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationLister)
     }
 
+    /**
+     *
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -67,6 +84,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     *
+     *
+     */
     private inner class GPSLocationListnerer : LocationListener {
         override fun onLocationChanged(location: Location) {
             //locationから緯度・緯度を取得
@@ -85,6 +106,11 @@ class MainActivity : AppCompatActivity() {
         override fun onProviderDisabled(provider: String) {}
     }
 
+    /**
+     * 指定した文字列の場所の地図を起動する
+     *
+     * @param view
+     */
     fun onMapSearchButtonClick(view: View) {
 
         //入力欄に入力されたキーワード文字列を取得
@@ -101,6 +127,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    /**
+     * 指定した緯度と経度の場所の地図を表示する
+     *
+     * @param view　使わない
+     */
     fun onMapShowCurrentButtonClick(view: View) {
 
         //フィールドの緯度と経度の値を元にマップアプリと連携するURI文字列を生成
